@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import mobileImg from './images/glenn-carstens.jpg';
-import desktopImg from './images/simon-abrams.jpg';
+import mobileImg from './images/me.png';
+import desktopImg from './images/IMG_0004.jpeg';
+import './mysass.scss';
+import Particles from './Particles';
 
 const LandingPage = () => {
     return (
@@ -11,9 +13,10 @@ const LandingPage = () => {
                 <div className='lp-image'></div>
                 <h1>The Joy of Coding</h1>
                 <Link to='/blogs'>
-                    <span>ENTER</span>
+                    <span className='enter-btn'>ENTER</span>
                 </Link>
                 <h2>BY DONOVAN LE</h2>
+                <Particles />
             </div>
             <div className='landing-page-d desktop'>
                 <div className='lp-img-desktop'>
@@ -25,10 +28,10 @@ const LandingPage = () => {
                         <span>The Joy of Coding</span>
                     </div>
                 </div>
-
+                <Particles />
                 <div className='left-side'>
                     <Link to='/blogs'>
-                        <span>Enter</span>
+                        <span className='enter-btn'>Enter</span>
                     </Link>
                     <span>Blogs</span>
                     <span>Articles</span>
@@ -87,6 +90,15 @@ const StyledWrapper = styled.main`
             margin-top: 9rem;
             color: #4d7ea8;
         }
+
+        .particle-wrapper {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -100;
+        }
     }
 
     @media all and (min-width: 850px) {
@@ -133,6 +145,11 @@ const StyledWrapper = styled.main`
                     bottom: 10%;
                     left: 30%;
                 }
+            }
+            .particle-wrapper {
+                position: fixed;
+                width: 50%;
+                right: 0;
             }
 
             .left-side {
