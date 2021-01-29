@@ -72,7 +72,9 @@ const Blog = () => {
                     {showNavBar()}
                     <div className='desktop-nav'>{deskNavBar()}</div>
                 </header>
-                <div className='post-previews'></div>
+                <div className='post-previews'>
+                    <h1>Still in progress....</h1>
+                </div>
             </div>
         </StyledWrapper>
     );
@@ -168,6 +170,13 @@ const StyledWrapper = styled.main`
             width: 100%;
             height: 10rem;
             background-color: #272932;
+
+            h1 {
+                text-align: center;
+                color: red;
+                text-shadow: 4px 4px 7px black;
+                margin-top: 3rem;
+            }
         }
     }
 
