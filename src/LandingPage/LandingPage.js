@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import mobileImg from './images/me.png';
+import mobileImg from './images/altumcode.jpg';
 import desktopImg from './images/IMG_0004.jpeg';
 import './mysass.scss';
 import Particles from './Particles';
@@ -56,8 +56,8 @@ const StyledWrapper = styled.main`
             left: 0;
             right: 0;
             background-image: linear-gradient(
-                    rgba(0, 0, 0, 0.6),
-                    rgba(0, 0, 0, 0.6)
+                    rgba(0, 0, 0, 0.3),
+                    rgba(0, 0, 0, 0.3)
                 ),
                 url(${mobileImg});
             background-size: cover;
@@ -87,7 +87,8 @@ const StyledWrapper = styled.main`
         }
 
         h2 {
-            margin-top: 9rem;
+            margin-top: 10rem;
+            font-size: 2.5rem;
             color: #4d7ea8;
         }
 
@@ -163,10 +164,10 @@ const StyledWrapper = styled.main`
                 a {
                     position: fixed;
                     bottom: 55%;
-                    right: 22%;
+                    right: 20%;
                     text-decoration: none;
                     color: black;
-                    font-size: 2.5rem;
+                    font-size: 3.5rem;
                     text-align: center;
                 }
             }
