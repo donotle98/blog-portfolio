@@ -49,6 +49,7 @@ const StyledWrapper = styled.main`
         display: none;
     }
     .landing-page-m {
+        overflow: hidden;
         text-align: center;
         .lp-image {
             position: fixed;
@@ -87,7 +88,8 @@ const StyledWrapper = styled.main`
         }
 
         h2 {
-            margin-top: 10rem;
+            margin-top: 9rem;
+            margin-bottom: 0;
             font-size: 2.5rem;
             color: #4d7ea8;
         }
