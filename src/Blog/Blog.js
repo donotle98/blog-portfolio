@@ -52,6 +52,8 @@ const Blog = () => {
             );
         }
     };
+
+    console.log(pageValue);
     return (
         <StyledWrapper>
             <div className='wrapper'>
