@@ -28,11 +28,12 @@ const BodyPosts = ({ post, setId }) => {
 export default BodyPosts;
 
 const StyledWrapper = styled.div`
-    border: solid 2px black;
     border-radius: 3rem;
+    border-top: solid 2px black;
+    border-bottom: solid 2px black;
     padding: 1.5rem;
     width: 20rem;
-    height: 25rem;
+    height: 27rem;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -40,6 +41,12 @@ const StyledWrapper = styled.div`
     overflow: hidden;
     white-space: no-wrap;
     text-overflow: ellipsis;
+    transition: 0.5s;
+
+    :hover {
+        box-shadow: 7px 7px 10px black;
+        transition: 0.5s;
+    }
     button {
         border: none;
         background: transparent;
