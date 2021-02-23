@@ -8,8 +8,6 @@ import Body from './BodyPosts/BodyPosts';
 import ChosenPost from './ChosenPost/ChosenPost';
 
 const Blog = () => {
-    const [navBar, setNavBar] = useState(false);
-    const [pageValue, setPageValue] = useState(null);
     const [posts, setPosts] = useState(null);
     const [error, setError] = useState(null);
     const [id, setId] = useState(null);
@@ -36,51 +34,6 @@ const Blog = () => {
         fetchPosts();
     }, []);
 
-    const deskNavBar = () => {
-        return (
-            <div className='nav-bar'>
-                <button onClick={() => setPageValue('react')}>
-                    <span>React.js</span>
-                </button>
-                <button onClick={() => setPageValue('node')}>
-                    <span>Node.js</span>
-                </button>
-                <button onClick={() => setPageValue('js')}>
-                    <span>Javascript</span>
-                </button>
-                <button onClick={() => setPageValue('sql')}>
-                    <span>SQL</span>
-                </button>
-                <button onClick={() => setPageValue('postgres')}>
-                    <span>PostgreSQL</span>
-                </button>
-            </div>
-        );
-    };
-
-    const showNavBar = () => {
-        if (navBar) {
-            return (
-                <div className='nav-bar mobile-nav'>
-                    <button onClick={() => setPageValue('react')}>
-                        <span>React.js</span>
-                    </button>
-                    <button onClick={() => setPageValue('node')}>
-                        <span>Node.js</span>
-                    </button>
-                    <button onClick={() => setPageValue('js')}>
-                        <span>Javascript</span>
-                    </button>
-                    <button onClick={() => setPageValue('sql')}>
-                        <span>SQL</span>
-                    </button>
-                    <button onClick={() => setPageValue('postgres')}>
-                        <span>PostgreSQL</span>
-                    </button>
-                </div>
-            );
-        }
-    };
     const handleChosenPost = () => {
         if (id) {
             return posts
@@ -133,18 +86,7 @@ const Blog = () => {
                 <header>
                     <div className='background'></div>
                     <h1>The Joy of Coding</h1>
-                    <div className='nav-btn'>
-                        <button
-                            onClick={() => {
-                                setNavBar((c) => !c);
-                                console.log('menu clicked');
-                            }}
-                        >
-                            Menu
-                        </button>
-                    </div>
-                    {showNavBar()}
-                    <div className='desktop-nav'>{deskNavBar()}</div>
+                    <h2>By Donovan Le</h2>
                 </header>
                 <div className='post-previews'>
                     {posts ? (
@@ -200,7 +142,7 @@ const StyledWrapper = styled.main`
             h1 {
                 font-size: 3rem;
                 text-align: center;
-                margin-top: 5rem;
+                margin-top: 3rem;
                 color: white;
             }
             h2 {
@@ -209,64 +151,19 @@ const StyledWrapper = styled.main`
                 margin-top: 1rem;
                 color: white;
             }
-
-            .nav-bar {
-                position: absolute;
-                top: 11.1rem;
-                left: 0;
-                width: 100%;
-                padding: 0.5rem;
-                padding-left: 0;
-                padding-right: 0;
-                background-color: #b6c2d9;
-                text-align: center;
-
-                button {
-                    cursor: pointer;
-                    padding: 0.5rem;
-                    border: none;
-                    background: transparent;
-                    transition: 0.5s;
-                }
-
-                button:hover {
-                    box-shadow: 6px 6px 4px black;
-                    transition: 0.5s;
-                }
-            }
-
-            .nav-btn {
-                position: absolute;
-                top: 9.3rem;
-                right: 0;
-
-                button {
-                    border: none;
-                    padding: 0.5rem 0.75rem 0.5rem 0.75rem;
-                    background-color: #b6c2d9;
-                    border: solid 2px #9e90a2;
-                }
-
-                button:focus {
-                    outline: none;
-                }
-            }
-
-            .desktop-nav {
-                display: none;
-            }
         }
         .post-previews {
             display: flex;
             position: absolute;
             left: 0;
-            top: 14rem;
+            top: 12rem;
             overflow-x: auto;
             overflow-y: hidden;
             width: 100%;
             height: 10rem;
             background-color: #272932;
             align-items: center;
+            box-shadow: 0px 7px 10px black, 0px -7px 10px white;
         }
 
         .body-posts {
@@ -305,31 +202,14 @@ const StyledWrapper = styled.main`
                 h2 {
                     font-size: 3.5rem;
                 }
-
-                .nav-bar {
-                    top: 22rem;
-                    button {
-                        font-size: 1.3rem;
-                        margin-right: 5rem;
-                    }
-                }
-                .nav-btn {
-                    display: none;
-                }
-                .desktop-nav {
-                    display: block;
-                }
-                .mobile-nav {
-                    display: none;
-                }
             }
             .post-previews {
-                top: 25.5rem;
+                top: 23.5rem;
                 height: 13rem;
             }
             .body-posts {
                 position: absolute;
-                top: 40rem;
+                top: 38rem;
                 .all-body-posts {
                     display: grid;
                     grid-template-columns: repeat(2, 1fr);

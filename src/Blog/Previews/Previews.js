@@ -32,6 +32,12 @@ const StyledWrapper = styled.div`
     button {
         border: none;
         background: transparent;
+        transition: 0.5s;
+    }
+    button:hover {
+        background: rgb(255, 255, 255, 0.5);
+        transition: 0.5s;
+        padding: 1rem 0;
     }
     .post {
         background-color: white;
