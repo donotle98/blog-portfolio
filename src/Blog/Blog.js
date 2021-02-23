@@ -117,6 +117,16 @@ const Blog = () => {
         }
     };
 
+    if (!posts) {
+        return (
+            <StyledLoading>
+                <div className='loading-posts'>
+                    <h1>Loading....</h1>
+                </div>
+            </StyledLoading>
+        );
+    }
+
     return (
         <StyledWrapper>
             <div className='wrapper'>
@@ -148,7 +158,7 @@ const Blog = () => {
                             );
                         })
                     ) : (
-                        <span>{error}</span>
+                        <span>Loading...</span>
                     )}
                 </div>
                 <div className='body-posts'>{handleChosenPost()}</div>
@@ -346,6 +356,35 @@ const StyledWrapper = styled.main`
                     grid-template-columns: repeat(3, 1fr);
                     gap: 10px;
                 }
+            }
+        }
+    }
+`;
+
+const StyledLoading = styled.div`
+    .loading-posts {
+        background: #d52e3f;
+        min-height: 100vh;
+        h1 {
+            font-size: 4rem;
+            text-align: center;
+            height: 90vh;
+            line-height: 90vh;
+            color: #fcedd8;
+            font-family: 'Niconne', cursive;
+            font-weight: 700;
+            text-shadow: 5px 5px 0px #eb452b, 10px 10px 0px #efa032,
+                15px 15px 0px #46b59b, 20px 20px 0px #017e7f,
+                25px 25px 0px #052939, 30px 30px 0px #c11a2b,
+                35px 35px 0px #c11a2b, 40px 40px 0px #c11a2b,
+                45px 45px 0px #c11a2b;
+        }
+    }
+
+    @media all and (min-width: 750px) {
+        .loading-posts {
+            h1 {
+                font-size: 10rem;
             }
         }
     }

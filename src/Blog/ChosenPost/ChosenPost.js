@@ -48,4 +48,13 @@ const StyledWrapper = styled.div`
         margin: 2rem 0.5rem 4rem 0.5rem;
         font-size: 1.2rem;
     }
+
+    @media all and (min-width: 750px) {
+        width: 40rem;
+        margin-bottom: 5rem;
+
+        p {
+            font-size: 1.5rem;
+        }
+    }
 `;
