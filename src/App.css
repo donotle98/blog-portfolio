@@ -1,8 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 body {
     font-family: 'Bebas Neue', cursive;
     background-color: white;
+    height: 100%;
+    width: 100%;
 }
 
 .logo {

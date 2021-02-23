@@ -1,11 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import mobileImg from './images/fotogra.jpg';
 import desktopImg from './images/glenn.jpg';
+import { DB_URI } from '../config';
+import Previews from './Previews/Previews';
+import Body from './BodyPosts/BodyPosts';
+import ChosenPost from './ChosenPost/ChosenPost';
 
 const Blog = () => {
     const [navBar, setNavBar] = useState(false);
     const [pageValue, setPageValue] = useState(null);
+    const [posts, setPosts] = useState(null);
+    const [error, setError] = useState(null);
+    const [id, setId] = useState(null);
+
+    const fetchPosts = async () => {
+        try {
+            const res = await fetch(`${DB_URI}blogs/all-blogs`);
+
+            const data = await res.json();
+
+            console.log(data);
+
+            if (!data) {
+                setError('No Blogs available');
+            }
+
+            setPosts(data);
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
+    useEffect(() => {
+        fetchPosts();
+    }, []);
 
     const deskNavBar = () => {
         return (
@@ -52,15 +81,48 @@ const Blog = () => {
             );
         }
     };
+    const handleChosenPost = () => {
+        if (id) {
+            return posts
+                ? posts.map((post, index) => {
+                      if (post._id === id) {
+                          return (
+                              <div className='user-picked-post' key={index}>
+                                  <button
+                                      className='all-posts-btn'
+                                      onClick={() => setId(null)}
+                                  >
+                                      All posts
+                                  </button>
+                                  <ChosenPost post={post} />
+                              </div>
+                          );
+                      }
+                  })
+                : null;
+        } else {
+            return (
+                <div className='all-body-posts'>
+                    {posts
+                        ? posts.map((post, index) => {
+                              return (
+                                  <div className='each-body-post' key={index}>
+                                      <Body post={post} setId={setId} />
+                                  </div>
+                              );
+                          })
+                        : null}
+                </div>
+            );
+        }
+    };
 
-    console.log(pageValue);
     return (
         <StyledWrapper>
             <div className='wrapper'>
                 <header>
                     <div className='background'></div>
-                    <h1>Donovan's Blog</h1>
-                    <h2>The Joy of Coding</h2>
+                    <h1>The Joy of Coding</h1>
                     <div className='nav-btn'>
                         <button
                             onClick={() => {
@@ -75,8 +137,21 @@ const Blog = () => {
                     <div className='desktop-nav'>{deskNavBar()}</div>
                 </header>
                 <div className='post-previews'>
-                    <h1>Still in progress....</h1>
+                    {posts ? (
+                        posts.map((post, index) => {
+                            return (
+                                <Previews
+                                    post={post}
+                                    key={index}
+                                    setId={setId}
+                                />
+                            );
+                        })
+                    ) : (
+                        <span>{error}</span>
+                    )}
                 </div>
+                <div className='body-posts'>{handleChosenPost()}</div>
             </div>
         </StyledWrapper>
     );
@@ -85,10 +160,19 @@ const Blog = () => {
 export default Blog;
 
 const StyledWrapper = styled.main`
+    button:focus {
+        outline: none;
+    }
+    .all-posts-btn {
+        border: solid 2px black;
+        padding: 0.4rem 0.6rem;
+        background: transparent;
+        margin-bottom: 1rem;
+    }
     .wrapper {
         header {
             .background {
-                position: fixed;
+                position: absolute;
                 left: 0;
                 top: 0;
                 background-image: linear-gradient(
@@ -99,7 +183,7 @@ const StyledWrapper = styled.main`
                 background-size: cover;
                 background-position: center center;
                 width: 100%;
-                height: 18rem;
+                height: 14rem;
                 z-index: -100;
             }
 
@@ -118,7 +202,7 @@ const StyledWrapper = styled.main`
 
             .nav-bar {
                 position: absolute;
-                top: 15.1rem;
+                top: 11.1rem;
                 left: 0;
                 width: 100%;
                 padding: 0.5rem;
@@ -143,7 +227,7 @@ const StyledWrapper = styled.main`
 
             .nav-btn {
                 position: absolute;
-                top: 13.3rem;
+                top: 9.3rem;
                 right: 0;
 
                 button {
@@ -163,21 +247,30 @@ const StyledWrapper = styled.main`
             }
         }
         .post-previews {
+            display: flex;
             position: absolute;
             left: 0;
-            top: 18rem;
+            top: 14rem;
             overflow-x: auto;
             overflow-y: hidden;
-            white-space: nowrap;
             width: 100%;
             height: 10rem;
             background-color: #272932;
+            align-items: center;
+        }
 
-            h1 {
-                text-align: center;
-                color: red;
-                text-shadow: 4px 4px 7px black;
-                margin-top: 3rem;
+        .body-posts {
+            position: absolute;
+            top: 26rem;
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+            .user-picked-post {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
             }
         }
     }
@@ -222,8 +315,38 @@ const StyledWrapper = styled.main`
             }
             .post-previews {
                 top: 25.5rem;
-                height: 18rem;
+                height: 13rem;
+            }
+            .body-posts {
+                position: absolute;
+                top: 40rem;
+                .all-body-posts {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 10px;
+                    width: 100%;
+                }
+
+                .each-body-post {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
             }
         }
-    } ;
+    }
+
+    @media all and (min-width: 950px) {
+        .wrapper {
+            .body-posts {
+                position: absolute;
+                top: 40rem;
+                .all-body-posts {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 10px;
+                }
+            }
+        }
+    }
 `;
