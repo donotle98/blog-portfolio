@@ -85,8 +85,10 @@ const Blog = () => {
             <div className='wrapper'>
                 <header>
                     <div className='background'></div>
-                    <h1>The Joy of Coding</h1>
-                    <h2>By Donovan Le</h2>
+                    <div className='box'>
+                        <h1>The Joy of Coding</h1>
+                        <h2>By Donovan Le</h2>
+                    </div>
                 </header>
                 <div className='post-previews'>
                     {posts ? (
@@ -123,6 +125,26 @@ const StyledWrapper = styled.main`
     }
     .wrapper {
         header {
+            .box {
+                border: 4px double rgba(250, 250, 250, 0.2);
+                width: 20rem;
+                margin: auto;
+                margin-top: 2rem;
+                background-color: rgb(0, 0, 0, 0.3);
+
+                h1 {
+                    font-size: 3rem;
+                    text-align: center;
+                    color: white;
+                }
+                h2 {
+                    font-size: 2rem;
+                    text-align: center;
+                    margin-top: 1rem;
+                    color: white;
+                }
+            }
+
             .background {
                 position: absolute;
                 left: 0;
@@ -137,19 +159,6 @@ const StyledWrapper = styled.main`
                 width: 100%;
                 height: 14rem;
                 z-index: -100;
-            }
-
-            h1 {
-                font-size: 3rem;
-                text-align: center;
-                margin-top: 3rem;
-                color: white;
-            }
-            h2 {
-                font-size: 2rem;
-                text-align: center;
-                margin-top: 1rem;
-                color: white;
             }
         }
         .post-previews {
@@ -196,11 +205,15 @@ const StyledWrapper = styled.main`
                     height: 25rem;
                 }
 
-                h1 {
-                    font-size: 6rem;
-                }
-                h2 {
-                    font-size: 3.5rem;
+                .box {
+                    width: 40rem;
+                    margin-top: 4rem;
+                    h1 {
+                        font-size: 6rem;
+                    }
+                    h2 {
+                        font-size: 3.5rem;
+                    }
                 }
             }
             .post-previews {
