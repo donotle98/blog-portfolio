@@ -18,8 +18,6 @@ const Blog = () => {
 
             const data = await res.json();
 
-            console.log(data);
-
             if (!data) {
                 setError('No Blogs available');
             }
