@@ -1,1 +1,2 @@
-export const DB_URI = 'https://dons-blog-server.herokuapp.com/';
+export const DB_URI =
+    'https://cors-anywhere.herokuapp.com/https://dons-blog-server.herokuapp.com/';
