@@ -38,19 +38,17 @@ const Blog = () => {
         if (id) {
             return posts
                 ? posts.map((post, index) => {
-                      if (post._id === id) {
-                          return (
-                              <div className='user-picked-post' key={index}>
-                                  <button
-                                      className='all-posts-btn'
-                                      onClick={() => setId(null)}
-                                  >
-                                      All posts
-                                  </button>
-                                  <ChosenPost post={post} />
-                              </div>
-                          );
-                      }
+                      return post._id === id ? (
+                          <div className='user-picked-post' key={index}>
+                              <button
+                                  className='all-posts-btn'
+                                  onClick={() => setId(null)}
+                              >
+                                  All posts
+                              </button>
+                              <ChosenPost post={post} />
+                          </div>
+                      ) : null;
                   })
                 : null;
         } else {
@@ -105,6 +103,7 @@ const Blog = () => {
                         <span>Loading...</span>
                     )}
                 </div>
+                {error}
                 <div className='body-posts'>{handleChosenPost()}</div>
             </div>
         </StyledWrapper>
